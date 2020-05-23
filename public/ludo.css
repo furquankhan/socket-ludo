@@ -1,0 +1,380 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------- */
+
+body {
+    background: rgb(2, 52, 66);
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.base {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.winnerStamp {
+    height: 20%;
+    position: absolute;
+}
+
+.winnerStampGreen {
+    right: 206px;
+    top: 83px;
+}
+
+.winnerStampRed {
+    left: 210px;
+    top: 83px;
+}
+
+.winnerStampBlue {
+    bottom: 73px;
+    left: 210px;
+}
+
+.winnerStampYellow {
+    bottom: 73px;
+    right: 206px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+.board {
+    width: 600px;
+    height: 600px;
+    float: left;
+    margin-left: 400px;
+    margin-top: -600px;
+}
+
+.rightDice {
+    width: 10%;
+    margin-left: 50px;
+    margin-top: -818px;
+}
+
+.container {
+    width: 600px;
+    height: 240px;
+}
+
+.houses {
+    width: 240px;
+    height: 240px;
+}
+
+.home {
+    width: 160px;
+    height: 160px;
+    margin: 35px;
+    padding: 5px;
+    text-align: center;
+    position: absolute;
+    border-radius: 20px;
+}
+
+.red {
+    background: rgba(236, 86, 86, 0.6);
+}
+
+.blue {
+    background: rgba(86, 86, 236, 0.6);
+}
+
+.yellow {
+    background: rgba(255, 236, 129, 0.6);
+}
+
+.green {
+    background: rgba(61, 177, 61, 0.6);
+}
+
+.redHouse {
+    background-color: rgb(143, 25, 25);
+    float: left;
+}
+
+.greenHouse {
+    background-color: rgb(33, 114, 33);
+    float: right;
+}
+
+.blueHouse {
+    background-color: rgb(51, 51, 173);
+    float: left;
+}
+
+.yellowHouse {
+    background-color: rgb(236, 188, 27);
+    float: right;
+}
+
+.finalHouse {
+    width: -1px;
+    height: -1px;
+    margin: 0 240px;
+    border-top: 60px solid rgb(33, 114, 33);
+    border-right: 60px solid rgb(236, 188, 27);
+    border-left: 60px solid rgb(143, 25, 25);
+    border-bottom: 60px solid rgb(51, 51, 173);
+    overflow: visible;
+    vertical-align: top;
+}
+
+.finish {
+    display: inline-block;
+    margin-left: 250px;
+}
+
+.pawnHome {
+    width: 50px;
+    height: 50px;
+    margin: 13px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 50%;
+    background: white;
+    vertical-align: top;
+}
+
+.pawnHome .p1, .pawnHome .p2 {
+    float: left;
+    position: fixed;
+}
+
+.pawnHome .p3, .pawnHome .p4 {
+    float: right;
+    position: fixed;
+}
+
+.middle {
+    width: 600px;
+    height: 120px;
+}
+
+.path1, .path4 {
+    width: 120px;
+    height: 240px;
+    display: inline-block;
+}
+
+.path2, .path3 {
+    width: 240px;
+    height: 120px;
+}
+
+.path2 {
+    float: left;
+}
+
+.path3 {
+    float: right;
+    margin-top: -120.5px;
+}
+
+.path1First, .path1Second, .path1Third {
+    width: 40px;
+    height: 240px;
+    float: left;
+}
+
+.path2First, .path2Second, .path2Third {
+    height: 40px;
+    width: 240px;
+}
+
+.path3First, .path3Second, .path3Third {
+    height: 40px;
+    width: 240px;
+    float: right;
+}
+
+.path4First, .path4Second, .path4Third {
+    width: 40px;
+    height: 240px;
+    float: left;
+}
+
+.blocks {
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+    height: 40px;
+    outline: 0.5px solid black;
+    width: 40px;
+    overflow: hidden;
+}
+
+.path2First .blocks, .path2Second .blocks, .path2Third .blocks, .path3First .blocks, .path3Second .blocks, .path3Third .blocks {
+    float: left;
+}
+
+.path1Second .blocks, .g0 {
+    background: rgb(33, 114, 33);
+}
+
+.path2Second .blocks, .g39 {
+    background: rgb(143, 25, 25);
+}
+
+.path3Second .blocks, .g13 {
+    background: rgb(236, 188, 27);
+}
+
+.path4Second .blocks, .g26 {
+    background: rgb(51, 51, 173);
+}
+
+.path1Second .g50, .path2Second .g37, .path4Second .g24, .path3Second .g11 {
+    background: rgb(221, 221, 221);
+}
+
+.g47, .g8, .g21, .g34 {
+    background: rgb(175, 172, 172);
+}
+
+i {
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+.pawnHome {
+    background: white;
+}
+
+.pawnHome i {
+    margin-top: 5px;
+    font-size: 40px
+}
+
+.redDice, .greenDice, .yellowDice, .blueDice {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    font-weight: bold;
+    padding: 25px;
+    font-size: 70px;
+    border: 4px solid white;
+    margin-left: 200px;
+    margin-top: 30px;
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dice {
+    font-size: 1px;
+}
+
+.dice img {
+    width: 100%;
+}
+
+.diceWrapper .redButton, .greenButton, .blueButton, .yellowButton {
+    margin-left: 220px;
+    margin-top: 190px;
+    outline: none;
+    color: white;
+    border-radius: 20px;
+    background-color: rgb(148, 39, 39);
+    padding: 10px;
+}
+
+.greenDice {
+    margin-left: 1000px;
+    margin-top: 230px;
+}
+
+.greenButton {
+    margin-left: 1025px;
+    margin-top: 380px;
+    position: absolute;
+    width: auto;
+    background: rgb(21, 116, 21);
+}
+
+.blueDice {
+    margin-top: 200px;
+}
+
+.blueButton {
+    margin-top: 350px;
+    background: rgb(51, 51, 182);
+}
+
+.yellowDice {
+    margin-top: 630px;
+    margin-left: 1000px;
+}
+
+.yellowButton {
+    margin-top: 780px;
+    margin-left: 1025px;
+    position: absolute;
+    background: rgb(214, 177, 55);
+}
+
+.spinAnimation {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

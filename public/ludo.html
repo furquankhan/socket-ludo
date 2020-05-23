@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        LUDO
+    </title>
+
+    <script src="jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" type="text/css" href="ludo.css">
+    <script src="ludo.js"></script>
+
+</head>
+
+<body>
+    <div class="base"></div>
+    <div class="wrapper">
+        <div id="background"></div>
+        <div id="wrapper"></div>
+        <div class="leftDice">
+            <div class="diceWrapper">
+                <div class="dice redDice"></div>
+                <div><img class="winnerStamp winnerStampRed" src="winner.png" /></div>
+                <button class="redButton" onclick="roll('red')">ROLL DICE</button>
+            </div>
+            <div class="diceWrapper">
+                <div class="dice blueDice"></div>
+                <div><img class="winnerStamp winnerStampBlue" src="winner.png" /></div>
+                <button class="blueButton" onclick="roll('blue')">ROLL DICE</button>
+            </div>
+        </div>
+    </div>
+    <div class="board">
+        <div class="container top">
+            <div class="houses redHouse">
+                <div class="home red">
+                    <div class="pawnHome p1 r-01"><i style="color: red" id="redPlayer1"
+                            class="rp redPlayer fas fa-chess-pawn" start="r-01"></i>
+                    </div>
+                    <div class="pawnHome p2 r-02"><i style="color: red" id="redPlayer2"
+                            class="rp redPlayer fas fa-chess-pawn" start="r-02"></i>
+                    </div>
+                    <div class="pawnHome p3 r-03"><i style="color: red" id="redPlayer3"
+                            class="rp redPlayer fas fa-chess-pawn" start="r-03"></i>
+                    </div>
+                    <div class="pawnHome p4 r-04"><i style="color: red" id="redPlayer4"
+                            class="rp redPlayer fas fa-chess-pawn" start="r-04"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="paths path1">
+                <div class="path1First">
+                    <div class="blocks g49 b23 r10 y36"></div>
+                    <div class="blocks g48 b22 r9 y35"></div>
+                    <div class="blocks g47 b21 r8 y34 safe">
+                    </div>
+                    <div class="blocks g46 b20 r7 y33"></div>
+                    <div class="blocks g45 b19 r6 y32"></div>
+                    <div class="blocks g44 b18 r5 y31"></div>
+                </div>
+                <div class="path1Second">
+                    <div class="blocks g50 b24 r11 y37"></div>
+                    <div class="blocks g51 homePath"></div>
+                    <div class="blocks g52 homePath"></div>
+                    <div class="blocks g53 homePath"></div>
+                    <div class="blocks g54 homePath"></div>
+                    <div class="blocks g55 homePath"></div>
+                </div>
+                <div class="path1Third">
+                    <div class="blocks x0 b25 r12 y38"></div>
+                    <div class="blocks g0 b26 r13 y39 safe"></div>
+                    <div class="blocks g1 b27 r14 y40"></div>
+                    <div class="blocks g2 b28 r15 y41"></div>
+                    <div class="blocks g3 b29 r16 y42"></div>
+                    <div class="blocks g4 b30 r17 y43"></div>
+                </div>
+            </div>
+            <div class="houses greenHouse">
+                <div class="home green">
+                    <div class="pawnHome p1 g-01"><i start="g-01" id="greenPlayer1" style="color: green"
+                            class="gp greenPlayer fas fa-chess-pawn"></i></div>
+                    <div class="pawnHome p2 g-02"><i start="g-02" id="greenPlayer2" style="color: green"
+                            class="gp greenPlayer fas fa-chess-pawn"></i></div>
+                    <div class="pawnHome p3 g-03"><i start="g-03" id="greenPlayer3" style="color: green"
+                            class="gp greenPlayer fas fa-chess-pawn"></i></div>
+                    <div class="pawnHome p4 g-04"><i start="g-04" id="greenPlayer4" style="color: green"
+                            class="gp greenPlayer fas fa-chess-pawn"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="paths path2">
+                <div class="path2First">
+                    <div class="blocks g38 b12 x0 y25"></div>
+                    <div class="blocks g39 b13 r0 y26 safe"></div>
+                    <div class="blocks g40 b14 r1 y27"></div>
+                    <div class="blocks g41 b15 r2 y28"></div>
+                    <div class="blocks g42 b16 r3 y29"></div>
+                    <div class="blocks g43 b17 r4 y30"></div>
+                </div>
+                <div class="path2Second">
+                    <div class="blocks g37 b11 r50 y24"></div>
+                    <div class="blocks x0 x1 r51 homePath"></div>
+                    <div class="blocks x0 x1 r52 homePath"></div>
+                    <div class="blocks x0 x1 r53 homePath"></div>
+                    <div class="blocks x0 x1 r54 homePath"></div>
+                    <div class="blocks x0 x1 r55 homePath"></div>
+                </div>
+                <div class="path2Third">
+                    <div class="blocks g36 b10 r49 y23"></div>
+                    <div class="blocks g35 b9 r48 y22"></div>
+                    <div class="blocks g34 b8 r47 y21 safe">
+                    </div>
+                    <div class="blocks g33 b7 r46 y20"></div>
+                    <div class="blocks g32 b6 r45 y19"></div>
+                    <div class="blocks g31 b5 r44 y18"></div>
+                </div>
+            </div>
+            <div class="finalHouse"></div>
+            <div class="finish g56 b56 r56 y56 safe"></div>
+            <div class="paths path3">
+                <div class="path3First">
+                    <div class="blocks g5 b31 r18 y44"></div>
+                    <div class="blocks g6 b32 r19 y45"></div>
+                    <div class="blocks g7 b33 r20 y46"></div>
+                    <div class="blocks g8 b34 r21 y47 safe">
+                    </div>
+                    <div class="blocks g9 b35 r22 y48"></div>
+                    <div class="blocks g10 b36 r23 y49"></div>
+                </div>
+                <div class="path3Second">
+                    <div class="blocks x0 x1 x2 y55 homePath"></div>
+                    <div class="blocks x0 x1 x2 y54 homePath"></div>
+                    <div class="blocks x0 x1 x2 y53 homePath"></div>
+                    <div class="blocks x0 x1 x2 y52 homePath"></div>
+                    <div class="blocks x0 x1 x2 y51 homePath"></div>
+                    <div class="blocks g11 b37 r24 y50"></div>
+                </div>
+                <div class="path3Third">
+                    <div class="blocks g17 b43 r30 y4"></div>
+                    <div class="blocks g16 b42 r29 y3"></div>
+                    <div class="blocks g15 b41 r28 y2"></div>
+                    <div class="blocks g14 b40 r27 y1"></div>
+                    <div class="blocks g13 b39 r26 y0 safe"></div>
+                    <div class="blocks g12 b38 r25"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container bottom">
+            <div class="houses blueHouse">
+                <div class="home blue">
+                    <div class="pawnHome p1 b-01"><i start="b-01" id="bluePlayer1" style="color: #4747d2"
+                            class="bp bluePlayer fas fa-chess-pawn"></i></div>
+                    <div class="pawnHome p2 b-02"><i start="b-02" id="bluePlayer2" style="color: #4747d2"
+                            class="bp bluePlayer fas fa-chess-pawn"></i></div>
+                    <div class="pawnHome p3 b-03"><i start="b-03" id="bluePlayer3" style="color: #4747d2"
+                            class="bp bluePlayer fas fa-chess-pawn"></i></div>
+                    <div class="pawnHome p4 b-04"><i start="b-04" id="bluePlayer4" style="color: #4747d2"
+                            class="bp bluePlayer fas fa-chess-pawn"></i></div>
+                </div>
+            </div>
+            <div class="paths path4">
+                <div class="path4First">
+                    <div class="blocks g30 b4 r43 y17"></div>
+                    <div class="blocks g29 b3 r42 y16"></div>
+                    <div class="blocks g28 b2 r41 y15"></div>
+                    <div class="blocks g27 b1 r40 y14"></div>
+                    <div class="blocks g26 b0 r39 y13 safe"></div>
+                    <div class="blocks g25 x0 r38 y12"></div>
+                </div>
+                <div class="path4Second">
+                    <div class="blocks x0 b55 homePath"></div>
+                    <div class="blocks x0 b54 homePath"></div>
+                    <div class="blocks x0 b53 homePath"></div>
+                    <div class="blocks x0 b52 homePath"></div>
+                    <div class="blocks x0 b51 homePath"></div>
+                    <div class="blocks g24 b50 r37 y11"></div>
+                </div>
+                <div class="path4Third">
+                    <div class="blocks g18 b44 r31 y5"></div>
+                    <div class="blocks g19 b45 r32 y6"></div>
+                    <div class="blocks g20 b46 r33 y7"></div>
+                    <div class="blocks g21 b47 r34 y8 safe">
+                    </div>
+                    <div class="blocks g22 b48 r35 y9"></div>
+                    <div class="blocks g23 b49 r36 y10"></div>
+                </div>
+            </div>
+            <div class="houses yellowHouse">
+                <div class="home yellow">
+                    <div class="pawnHome p1 y-01"><i start=y-01 id="yellowPlayer1" style="color: orange"
+                            class="yp yellowPlayer fas fa-chess-pawn"></i>
+                    </div>
+                    <div class="pawnHome p2 y-02"><i start=y-02 id="yellowPlayer2" style="color: orange"
+                            class="yp yellowPlayer fas fa-chess-pawn"></i>
+                    </div>
+                    <div class="pawnHome p3 y-03"><i start=y-03 id="yellowPlayer3" style="color: orange"
+                            class="yp yellowPlayer fas fa-chess-pawn"></i>
+                    </div>
+                    <div class="pawnHome p4 y-04"><i start=y-04 id="yellowPlayer4" style="color: orange"
+                            class="yp yellowPlayer fas fa-chess-pawn"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div id="background_"></div>
+        <div id="wrapper_"></div>
+        <div class="rightDice">
+            <div class="diceWrapper">
+                <div class="dice greenDice"></div>
+                <div><img class="winnerStamp winnerStampGreen" src="winner.png" /></div>
+                <button class="greenButton" onclick="roll('green')">ROLL DICE</button>
+            </div>
+            <div class="diceWrapper">
+                <div class="dice yellowDice"></div>
+                <div></div><img class="winnerStamp winnerStampYellow" src="winner.png" />
+            </div>
+            <button class="yellowButton" onclick="roll('yellow')">ROLL DICE</button>
+        </div>
+    </div>  
+    </div>
+</body>
+
+</html>
